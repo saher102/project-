@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painting Website</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  color:#fff;
+  background:#000;
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.75);
+  z-index:10000;
+  backdrop-filter:blur(6px);
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:28px;
+  transition:.3s;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 6px;
+  font-size:15px;
+}
+
+nav a:hover{color:#f0c040}
+
+.menu-btn{
+  display:none;
+  position:absolute;
+  right:20px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+main{padding-top:60px}
+
+/* HOME */
+.home{
+  position:relative;
+  min-height:100vh;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+
+.home video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+
+.home .overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:1;
+}
+
+.home .content{
+  position:relative;
+  z-index:2;
+  padding:20px;
+  max-width:900px;
+}
+
+.home h1{font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:12px}
+.home p{font-size:clamp(1rem,2.5vw,1.2rem);margin-bottom:20px}
+
+.home .btn{
+  padding:12px 20px;
+  border-radius:6px;
+  background:#f0c040;
+  color:#000;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+}
+
+/* COMMON */
+section{padding:80px 20px;position:relative;text-align:center}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,0.55);z-index:1}
+.content{position:relative;z-index:2;max-width:1000px;margin:auto}
+
+/* ABOUT */
+.about{background:url("about.jpg") center/cover no-repeat}
+
+/* GALLERY */
+.gallery{background:url("gallary.webp") center/cover no-repeat}
+
+.gallery-grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+}
+
+.gallery-grid img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  border-radius:10px;
+  transition:.3s;
+  box-shadow:0 6px 18px rgba(0,0,0,0.5);
+}
+
+.gallery-grid img:hover{
+  transform:scale(1.04);
+  box-shadow:0 12px 26px rgba(0,0,0,0.6);
+}
+
+/* CONTACT */
+.contact{background:url("10.webp") center/cover no-repeat}
+
+.contact form{margin-top:20px;display:flex;flex-direction:column;gap:14px}
+
+.contact input,.contact textarea{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:6px;
+  font-size:1rem;
+}
+
+.contact button{
+  padding:12px;
+  border:none;
+  border-radius:6px;
+  background:#f0c040;
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  background:url("11.webp") center/cover no-repeat;
+  padding:30px 20px;
+  text-align:center;
+  position:relative;
+}
+
+footer p{font-size:0.95rem}
+
+/* RESPONSIVE */
+@media (max-width:768px){
+  nav ul{
+    position:absolute;
+    top:60px;
+    left:0;
+    width:100%;
+    background:#000;
+    flex-direction:column;
+    gap:16px;
+    padding:20px 0;
+    display:none;
+  }
+  nav ul.active{display:flex}
+  .menu-btn{display:block}
+}
+
+@media (max-width:480px){
+  section{padding:70px 16px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="menu-btn" onclick="document.querySelector('nav ul').classList.toggle('active')">☰</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+<section id="home" class="home">
+  <video autoplay muted loop playsinline>
+    <source src="home.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="content">
+    <h1>Welcome to My Painting World</h1>
+    <p>Discover the beauty of colors and creativity</p>
+    <button class="btn" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">View Gallery</button>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="overlay"></div>
+  <div class="content">
+    <h2>About Me</h2>
+    <p>I am a passionate painter who loves to bring imagination to life with colors. Each painting tells a story — welcome to my creative world.</p>
+  </div>
+</section>
+
+<section id="gallery" class="gallery">
+  <div class="overlay"></div>
+  <div class="content">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="1.jpg"><img src="2.jpg"><img src="3.jpg">
+      <img src="4.jpg"><img src="5.jpg"><img src="6.jpg">
+      <img src="7.jpg"><img src="8.jpg"><img src="9.jpg">
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="overlay"></div>
+  <div class="content">
+    <h2>Contact Me</h2>
+    <p>Have a question or want to collaborate?</p>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="overlay"></div>
+  <div class="content">
+    <p>© 2025 My Painting Website | All Rights Reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>
